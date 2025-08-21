@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SullivanFoundation.ViewModels"
+             mc:Ignorable="d" 
+			 d:DesignWidth="800" 
+			 d:DesignHeight="450"
+             x:Class="SullivanFoundation.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+	<Grid ColumnDefinitions="Auto,*">
+
+		<Grid Grid.Column="0" 
+			  Background="{DynamicResource PrimaryBackgroundGradient}">
+			<Grid RowDefinitions="Auto,*,50" Margin="10">
+				
+				<Image Width="150" Source="/Assets/logo.png" Margin="5"/>
+				
+				<StackPanel Grid.Row="1">
+					<Button Classes="nav" HorizontalAlignment="Stretch">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xe2c2;"  />
+							<Label Content="Home"/>
+						</StackPanel>
+					</Button>
+					<Button Classes="nav" HorizontalAlignment="Stretch">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xE326;"  />
+							<Label Content="Accounts"/>
+						</StackPanel>
+					</Button>
+					<Button Classes="nav" HorizontalAlignment="Stretch">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xE4D6;"  />
+							<Label Content="Reporting"/>
+						</StackPanel>
+					</Button>
+				</StackPanel>
+
+				<Button Grid.Row="2" Classes="nav">
+					<StackPanel Orientation="Horizontal">
+						<Label Classes="icon" Content="&#xE270;"/>
+					</StackPanel>
+				</Button>
+			</Grid>
+		</Grid>
+		
+		<ContentControl Grid.Column="1" Background="{DynamicResource BackgroundColor}"/>
+		
+	</Grid>
+</UserControl>

@@ -1,0 +1,31 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SullivanFoundation.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+		<StyleInclude Source="/Styles/AppDeafultStyles.axaml" />
+    </Application.Styles>
+
+	<Application.Resources>
+
+		<FontFamily x:Key="Montserrat">avares://SullivanFoundation/Assets/Fonts#Montserrat</FontFamily>
+		<FontFamily x:Key="Phosphor">avares://SullivanFoundation/Assets/Fonts#Phosphor</FontFamily>
+		<FontFamily x:Key="PhosphorFill">avares://SullivanFoundation/Assets/Fonts#Phosphor-Fill</FontFamily>
+
+		<LinearGradientBrush x:Key="PrimaryBackgroundGradient"
+							 StartPoint="0%, 0%"
+							 EndPoint="100%,0%">
+			<GradientStop Offset="0" Color="#00251d"/>
+			<GradientStop Offset="0" Color="#001415"/>
+		</LinearGradientBrush>
+		
+
+
+		<SolidColorBrush x:Key="BackgroundColor" Color="#d1d2d4"/>
+		<SolidColorBrush x:Key="ForegroundColor" Color="#001415"/>
+		
+	</Application.Resources>
+</Application>

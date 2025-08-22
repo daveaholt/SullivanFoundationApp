@@ -2,11 +2,11 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-
+using Microsoft.Extensions.DependencyInjection;
+using SullivanFoundation.Services;
 using SullivanFoundation.ViewModels;
+using SullivanFoundation.ViewModels.PageViewModels;
 using SullivanFoundation.Views;
-using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace SullivanFoundation;
 
@@ -17,19 +17,24 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
+    public static ServiceProvider ServiceProvider { get; private set; }
+
     public override void OnFrameworkInitializationCompleted()
     {
+        var collection = new ServiceCollection();
+        RegisterServices(collection);
+
+        ServiceProvider = collection.BuildServiceProvider();
+
         // Line below is needed to remove Avalonia data validation.
         // Without this line you will get duplicate validations from both Avalonia and CT
         BindingPlugins.DataValidators.RemoveAt(0);
-
-        Assets.Resources.Culture = new CultureInfo("es-MX");
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel()
+                DataContext = ServiceProvider.GetRequiredService<IMainViewModel>()
             };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
@@ -41,5 +46,15 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void RegisterServices(ServiceCollection services)
+    {
+        services.AddSingleton<IMainViewModel, MainViewModel>();
+        services.AddSingleton<IHomePageViewModel, HomePageViewModel>();
+        services.AddSingleton<IAccountsPageViewModel, AccountsPageViewModel>();
+        services.AddSingleton<IReportsPageViewModel, ReportsPageViewModel>();
+        services.AddSingleton<ISettingsPageViewModel, SettingsPageViewModel>();
+        services.AddSingleton<IAccountsService, AccountsService>();
     }
 }

@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"			            
              xmlns:vm="clr-namespace:SullivanFoundation.ViewModels"
              mc:Ignorable="d" 
 			 d:DesignWidth="800" 
@@ -12,6 +12,7 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
+	
 	<Grid ColumnDefinitions="Auto,*">
 
 		<Grid Grid.Column="0" 
@@ -21,19 +22,19 @@
 				<Image Width="150" Source="/Assets/logo.png" Margin="5"/>
 				
 				<StackPanel Grid.Row="1">
-					<Button Classes="nav" HorizontalAlignment="Stretch">
+					<Button Classes="nav" HorizontalAlignment="Stretch" Command="{Binding GoToHomeCommand}">
 						<StackPanel Orientation="Horizontal">
 							<Label Classes="icon" Content="&#xe2c2;"  />
 							<Label Content="Home"/>
 						</StackPanel>
 					</Button>
-					<Button Classes="nav" HorizontalAlignment="Stretch">
+					<Button Classes="nav" HorizontalAlignment="Stretch" Command="{Binding GoToAccountsCommand}">
 						<StackPanel Orientation="Horizontal">
 							<Label Classes="icon" Content="&#xE326;"  />
 							<Label Content="Accounts"/>
 						</StackPanel>
 					</Button>
-					<Button Classes="nav" HorizontalAlignment="Stretch">
+					<Button Classes="nav" HorizontalAlignment="Stretch" Command="{Binding GoToReportsCommand}">
 						<StackPanel Orientation="Horizontal">
 							<Label Classes="icon" Content="&#xE4D6;"  />
 							<Label Content="Reporting"/>
@@ -41,7 +42,7 @@
 					</Button>
 				</StackPanel>
 
-				<Button Grid.Row="2" Classes="nav">
+				<Button Grid.Row="2" Classes="nav" Command="{Binding GoToSettingsCommand}">
 					<StackPanel Orientation="Horizontal">
 						<Label Classes="icon" Content="&#xE270;"/>
 					</StackPanel>
@@ -49,7 +50,9 @@
 			</Grid>
 		</Grid>
 		
-		<ContentControl Grid.Column="1" Background="{DynamicResource BackgroundColor}"/>
+		<ContentControl Grid.Column="1" 
+						Background="{DynamicResource BackgroundColor}"
+						Content="{Binding CurrentPage}"/>
 		
 	</Grid>
 </UserControl>
